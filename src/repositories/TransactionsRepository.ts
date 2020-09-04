@@ -47,6 +47,10 @@ class TransactionsRepository {
 
   public create({ title, value, type }: CreateTransactionDTO): Transaction {
 
+    if (type !== 'income' || 'outcome') {
+      throw new Error("Type must be income or outcome");
+    }
+
     const transaction = new Transaction({ title, value, type });
 
     this.transactions.push(transaction);
